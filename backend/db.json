@@ -1,0 +1,165 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Manioc 6 Ha — Phase Prioritaire",
+      "location": "Région du Pool",
+      "surface": 6,
+      "cycle_months": 18,
+      "total_budget": 1947000,
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "name": "Manioc 10 Ha — Extension",
+      "location": "Région du Pool",
+      "surface": 10,
+      "cycle_months": 18,
+      "total_budget": 3245000,
+      "status": "planned"
+    }
+  ],
+  "investors": [
+    {
+      "id": 1,
+      "name": "M. Boukaka",
+      "phone": "+242061111111",
+      "email": "boukaka@email.com",
+      "share_percentage": 20,
+      "total_invested": 389400,
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "name": "Mme. Nguimbi",
+      "phone": "+242062222222",
+      "email": "nguimbi@email.com",
+      "share_percentage": 5,
+      "total_invested": 97350,
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "name": "M. Kabongo",
+      "phone": "+242063333333",
+      "email": "kabongo@email.com",
+      "share_percentage": 20,
+      "total_invested": 389400,
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "name": "M. Mvouma",
+      "phone": "+242064444444",
+      "email": "mvouma@email.com",
+      "share_percentage": 10,
+      "total_invested": 194700,
+      "status": "active"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "investor_id": 1,
+      "project_id": 1,
+      "amount": 79200,
+      "share_percentage": 20,
+      "stage": "Dessouchage",
+      "status": "confirmed"
+    },
+    {
+      "id": 2,
+      "investor_id": 1,
+      "project_id": 1,
+      "amount": 19800,
+      "share_percentage": 20,
+      "stage": "Ramassage",
+      "status": "confirmed"
+    },
+    {
+      "id": 3,
+      "investor_id": 2,
+      "project_id": 1,
+      "amount": 19800,
+      "share_percentage": 5,
+      "stage": "Dessouchage",
+      "status": "confirmed"
+    },
+    {
+      "id": 4,
+      "investor_id": 3,
+      "project_id": 1,
+      "amount": 79200,
+      "share_percentage": 20,
+      "stage": "Dessouchage",
+      "status": "confirmed"
+    },
+    {
+      "id": 5,
+      "investor_id": 1,
+      "project_id": 1,
+      "amount": 79200,
+      "share_percentage": 20,
+      "stage": "Labour",
+      "status": "confirmed"
+    }
+  ],
+  "stages": [
+    {
+      "id": 1,
+      "name": "Dessouchage",
+      "cost_per_hectare": 66000,
+      "total_cost": 396000,
+      "status": "completed",
+      "paid": true
+    },
+    {
+      "id": 2,
+      "name": "Ramassage",
+      "cost_per_hectare": 16500,
+      "total_cost": 99000,
+      "status": "completed",
+      "paid": true
+    },
+    {
+      "id": 3,
+      "name": "Labour",
+      "cost_per_hectare": 66000,
+      "total_cost": 396000,
+      "status": "in_progress",
+      "paid": false
+    },
+    {
+      "id": 4,
+      "name": "Pulvérisation",
+      "cost_per_hectare": 55000,
+      "total_cost": 330000,
+      "status": "pending",
+      "paid": false
+    },
+    {
+      "id": 5,
+      "name": "Plantage",
+      "cost_per_hectare": 55000,
+      "total_cost": 330000,
+      "status": "pending",
+      "paid": false
+    },
+    {
+      "id": 6,
+      "name": "Matériel Végétal",
+      "cost_per_hectare": 33000,
+      "total_cost": 198000,
+      "status": "pending",
+      "paid": false
+    },
+    {
+      "id": 7,
+      "name": "Fouille / Récolte",
+      "cost_per_hectare": 33000,
+      "total_cost": 198000,
+      "status": "pending",
+      "paid": false
+    }
+  ]
+}

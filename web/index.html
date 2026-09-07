@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manioc Investment — Agriculture Participative</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #222; }
+    .logo { font-size: 28px; font-weight: 900; color: #4CAF50; letter-spacing: 2px; }
+    .nav { display: flex; gap: 24px; }
+    .nav a { color: #888; text-decoration: none; font-size: 14px; }
+    .nav a:hover, .nav a.active { color: #4CAF50; }
+    .hero { padding: 40px 0; }
+    .hero h1 { font-size: 32px; margin-bottom: 8px; }
+    .hero p { color: #666; font-size: 16px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+    .stat-card { background: #141414; border-radius: 12px; padding: 20px; border: 1px solid #222; }
+    .stat-value { font-size: 32px; font-weight: bold; color: #4CAF50; }
+    .stat-label { font-size: 12px; color: #666; margin-top: 4px; text-transform: uppercase; }
+    .section { margin: 32px 0; }
+    .section-title { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: #141414; border-radius: 12px; padding: 20px; border: 1px solid #222; }
+    .card:hover { border-color: #4CAF50; }
+    .card-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .card-sub { color: #666; font-size: 13px; }
+    .btn { background: #4CAF50; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 600; }
+    .btn:hover { opacity: 0.9; }
+    .btn-sm { padding: 6px 12px; font-size: 12px; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .badge-active { background: #1a3a1a; color: #4ade80; }
+    .badge-completed { background: #1a1a3a; color: #818cf8; }
+    .badge-pending { background: #3a2a1a; color: #fbbf24; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th { text-align: left; padding: 12px; color: #666; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #222; }
+    .table td { padding: 12px; border-bottom: 1px solid #1a1a1a; font-size: 14px; }
+    .table tr:hover { background: #1a1a1a; }
+    .footer { text-align: center; padding: 40px 0; color: #444; font-size: 13px; border-top: 1px solid #222; margin-top: 40px; }
+    .progress-bar { background: #222; border-radius: 8px; height: 8px; margin: 8px 0; }
+    .progress-fill { background: #4CAF50; height: 100%; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    const API = "http://localhost:3014/api";
+
+    function App() {
+      const [stats, setStats] = useState({});
+      const [projects, setProjects] = useState([]);
+      const [investors, setInvestors] = useState([]);
+      const [stages, setStages] = useState([]);
+
+      useEffect(() => {
+        fetch(`${API}/stats`).then(r => r.json()).then(setStats);
+        fetch(`${API}/projects`).then(r => r.json()).then(setProjects);
+        fetch(`${API}/investors`).then(r => r.json()).then(setInvestors);
+        fetch(`${API}/stages`).then(r => r.json()).then(setStages);
+      }, []);
+
+      return (
+        <div>
+          <header className="header">
+            <div className="logo">🌱 MANIOC INVESTMENT</div>
+            <nav className="nav">
+              <a href="#" className="active">Projets</a>
+              <a href="#">Investisseurs</a>
+              <a href="#">Étapes</a>
+              <a href="#">Contrats</a>
+            </nav>
+          </header>
+
+          <div className="container">
+            <section className="hero">
+              <h1>Investissement Agricole Participatif</h1>
+              <p>Manioc • 18 mois • Parts 5% / 10% / 20% • Bénéfices transparents</p>
+            </section>
+
+            <div className="stats">
+              <div className="stat-card">
+                <div className="stat-value">{stats.projects || 0}</div>
+                <div className="stat-label">Projets</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-value">{stats.investors || 0}</div>
+                <div className="stat-label">Investisseurs</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-value">{stats.transactions || 0}</div>
+                <div className="stat-label">Transactions</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-value">{stats.totalInvestments ? stats.totalInvestments.toLocaleString() : 0} F</div>
+                <div className="stat-label">Total investi</div>
+              </div>
+            </div>
+
+            <section className="section">
+              <h2 className="section-title">🌾 Projets</h2>
+              <div className="grid">
+                {projects.map(p => (
+                  <div key={p.id} className="card">
+                    <div style={{display:'flex', justifyContent:'space-between'}}>
+                      <div className="card-title">{p.name}</div>
+                      <span className={`badge badge-${p.status}`}>{p.status}</span>
+                    </div>
+                    <div className="card-sub">{p.location} • {p.surface} Ha • {p.cycle_months} mois</div>
+                    <div style={{marginTop:8, fontSize:20, fontWeight:'bold', color:'#4CAF50'}}>
+                      {p.total_budget.toLocaleString()} XAF
+                    </div>
+                    <div className="card-sub">Budget total</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="section">
+              <h2 className="section-title">📊 Étapes du Chantier (6 Ha)</h2>
+              <div className="grid">
+                {stages.map(s => (
+                  <div key={s.id} className="card">
+                    <div style={{display:'flex', justifyContent:'space-between'}}>
+                      <div className="card-title">{s.name}</div>
+                      <span className={`badge badge-${s.status === 'completed' ? 'completed' : s.status === 'in_progress' ? 'active' : 'pending'}`}>{s.status}</span>
+                    </div>
+                    <div className="card-sub">{s.cost_per_hectare.toLocaleString()} XAF/Ha • Total: {s.total_cost.toLocaleString()} XAF</div>
+                    <div className="progress-bar">
+                      <div className="progress-fill" style={{width: s.paid ? '100%' : s.status === 'in_progress' ? '50%' : '0%'}}></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="section">
+              <h2 className="section-title">👥 Investisseurs</h2>
+              <table className="table">
+                <thead><tr><th>Nom</th><th>Quote-part</th><th>Investi</th><th>Statut</th></tr></thead>
+                <tbody>
+                  {investors.map(inv => (
+                    <tr key={inv.id}>
+                      <td>{inv.name}</td>
+                      <td><span className="badge badge-active">{inv.share_percentage}%</span></td>
+                      <td>{inv.total_invested.toLocaleString()} XAF</td>
+                      <td><span className="badge badge-active">{inv.status}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          </div>
+
+          <footer className="footer">
+            <p>© 2026 Manioc Investment • Agriculture Participative Congo • 10% Foncier • 90% Pool Investisseurs</p>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
